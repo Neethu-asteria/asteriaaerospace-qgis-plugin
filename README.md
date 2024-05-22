@@ -1,0 +1,1 @@
+# asteriaaerospace-qgis-plugin
