@@ -24,12 +24,17 @@
 
 import os
 
+
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import QUrl
+
+from urllib.parse import urlparse, parse_qs
+from .import_export import ImportExportWindow
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'ImportExportFiles.ui'))
+    os.path.dirname(__file__), 'loginscreen.ui'))
     
 
 
@@ -43,4 +48,11 @@ class ManageSkydeckDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        self.importFileListGroupBox.setVisible(False)
+
+        #self.open_web_page()
+        # self.importFileListGroupBox.setVisible(False)
+    def closePlugin(self):
+        # Create a new instance of the class, which will call __init__
+        new_instance = ManageSkydeckDialog()
+        # Close the plugin
+        self.close()
